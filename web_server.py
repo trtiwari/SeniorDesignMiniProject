@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import os,subprocess,ast,json
+from login.login import login
 
-PORT = 8000
+PORT = 80
 DOC_ROOT = "/root/Documents/Senior/SeniorThesis/SeniorDesignMiniProject"
 
 class Handler(BaseHTTPRequestHandler):
@@ -27,17 +27,15 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == "/":
-		    with open(DOC_ROOT+"/index/index.html") as handler:
-		        self._set_headers()
-		        content = handler.read()
-		        self.wfile.write(content)
-		elif self.path == "login":
+            self.path = "/login"
+        if self.path == "/login":
+            content = login()
+            self.wfile.write(content)
+        elif self.path == "/list_sources":
 			pass
-		elif self.path == "list_sources":
+        elif self.path == "/display_results":
 			pass
-		elif self.path == "display_results":
-			pass
-		elif self.path == "add_source":
+        elif self.path == "/add_source":
 			pass
 
 
@@ -58,3 +56,6 @@ def run(server_class=HTTPServer, handler_class=Handler, port=PORT):
 
 # write_file()
 run()
+
+#  952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com (client id)
+#  nboB0TA8CJUsh-Av8z-HEII7 (client secret) 

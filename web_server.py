@@ -28,17 +28,34 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.path = "/login"
-        if self.path == "/login":
-            content = login()
+        if "/templates/images" in self.path:
+            extension = self.path.split(".")[-1]
+            self._set_headers(extension=extension)
+            with open(DOC_ROOT + self.path) as descriptor:
+                content = descriptor.read()
+                self.wfile.write(content)
+        elif "/templates/javascript" in self.path:
+            extension = self.path.split(".")[-1]
+            self._set_headers(extension=extension)
+            with open(DOC_ROOT + self.path) as descriptor:
+                content = descriptor.read()
+                self.wfile.write(content)
+        elif "/templates/css" in self.path:
+            extension = self.path.split(".")[-1]
+            self._set_headers(extension=extension)
+            with open(DOC_ROOT + self.path) as descriptor:
+                content = descriptor.read()
+                self.wfile.write(content)
+        elif "/login" in self.path:
+            self._set_headers()
+            content = login(DOC_ROOT)
             self.wfile.write(content)
-        elif self.path == "/list_sources":
+        elif "/list_sources" in self.path:
 			pass
-        elif self.path == "/display_results":
+        elif "/display_results" in self.path:
 			pass
-        elif self.path == "/add_source":
-			pass
-
-
+        elif "/add_source" in self.path:
+			print "reached!"
 
     def do_HEAD(self):
         self._set_headers()
@@ -53,9 +70,5 @@ def run(server_class=HTTPServer, handler_class=Handler, port=PORT):
     print '[*] Starting httpd at port', PORT
     httpd.serve_forever()
 
-
-# write_file()
-run()
-
-#  952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com (client id)
-#  nboB0TA8CJUsh-Av8z-HEII7 (client secret) 
+if __name__ == "__main__":
+    run()

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from login.login import login
+from server_code.login.login import login
+from server_code.sources.sources import sources
 
 PORT = 80
 DOC_ROOT = "/root/Documents/Senior/SeniorThesis/SeniorDesignMiniProject"
@@ -19,7 +20,6 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-type","image/png")
         else:
         	self.send_header("Content-type","text/html")
-        # this is so no one caches our page as caching would give false positives
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma","no-cache")
         self.send_header("Expires", "0")
@@ -28,34 +28,40 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.path = "/login"
-        if "/templates/images" in self.path:
+        if "/frontend/images" in self.path:
             extension = self.path.split(".")[-1]
             self._set_headers(extension=extension)
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
-        elif "/templates/javascript" in self.path:
+        elif "/frontend/javascript" in self.path:
             extension = self.path.split(".")[-1]
             self._set_headers(extension=extension)
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
-        elif "/templates/css" in self.path:
+        elif "/frontend/css" in self.path:
             extension = self.path.split(".")[-1]
             self._set_headers(extension=extension)
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
+        elif "/sources/add_sources" in self.path:
+            pass
         elif "/login" in self.path:
             self._set_headers()
             content = login(DOC_ROOT)
             self.wfile.write(content)
         elif "/list_sources" in self.path:
-			pass
+            self._set_headers()
         elif "/display_results" in self.path:
-			pass
-        elif "/add_source" in self.path:
-			print "reached!"
+            self._set_headers()
+        elif "/sources" in self.path:
+            self._set_headers()
+            print self.path
+            user_id = self.path.split("/")[0]
+            print user_id
+            content = sources(user_id)
 
     def do_HEAD(self):
         self._set_headers()
@@ -72,3 +78,7 @@ def run(server_class=HTTPServer, handler_class=Handler, port=PORT):
 
 if __name__ == "__main__":
     run()
+
+# add_sources
+# sign_out
+# urls

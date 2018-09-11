@@ -8,7 +8,7 @@ from server_code.add_sources import add_sources
 from server_code.display_results import display_results
 from server_code.add_sources import add_sources
 
-PORT = 80
+PORT = 8000
 pwd = subprocess.Popen("pwd",stdout=subprocess.PIPE)
 DOC_ROOT = str(pwd.stdout.read()[:-1])
 

@@ -13,8 +13,8 @@ pwd = subprocess.Popen("pwd",stdout=subprocess.PIPE)
 DOC_ROOT = str(pwd.stdout.read()[:-1])
 
 class Handler(BaseHTTPRequestHandler):
-    def _set_headers(self,extension="html"):
-        self.send_response(200)
+    def _set_headers(self,extension="html",response=200):
+        self.send_response(response)
         if extension == "js":
         	self.send_header("Content-type","text/javascript")
         elif extension == "css":
@@ -75,7 +75,10 @@ class Handler(BaseHTTPRequestHandler):
             content = display_results.display_results(user_id, source)
             self.wfile.write(content)
         else:
-            print self.path
+            self._set_headers(response=404)
+            with open(DOC_ROOT + "/frontend/html/404.template.html") as descriptor:
+                content = descriptor.read()
+                self.wfile.write(content)
             
 
     def do_HEAD(self):

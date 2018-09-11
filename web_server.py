@@ -8,7 +8,7 @@ from server_code.add_sources import add_sources
 from server_code.display_results import display_results
 from server_code.add_sources import add_sources
 
-PORT = 8000
+PORT = 80
 pwd = subprocess.Popen("pwd",stdout=subprocess.PIPE)
 DOC_ROOT = str(pwd.stdout.read()[:-1])
 
@@ -54,7 +54,7 @@ class Handler(BaseHTTPRequestHandler):
         elif "/add_sources?source_name" in self.path:
             print self.path
             user_id = self.path.split("/")[1]
-            source_label = self.path.split("?")[2]
+            source_label = self.path.split("=")[1]
         elif "/add_sources" in self.path:
             content = add_sources.load_add_sources_page(DOC_ROOT)
             self.wfile.write(content)

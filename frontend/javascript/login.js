@@ -2,5 +2,5 @@ function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   var id = profile.getId(); // Do not send to your backend! Use an ID token instead.
   var name =  profile.getName();
-  document.location.replace("http://trishita.ddns.net/" + id +"/list_sources");
+  window.location.href = id +"/list_sources";
 }

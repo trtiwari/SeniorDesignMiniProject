@@ -3,6 +3,7 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from server_code.login.login import login
 from server_code.sources.sources import sources
+from server_code.display_results.display_results import display_results
 
 PORT = 80
 DOC_ROOT = "/root/Documents/Senior/SeniorThesis/SeniorDesignMiniProject"
@@ -54,8 +55,13 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif "/list_sources" in self.path:
             self._set_headers()
+            sources()
         elif "/display_results" in self.path:
             self._set_headers()
+            user_id = self.path.split("/")[0]
+            source = self.path.split("/")[1]
+            content = display_results(user_id, source)
+            self.wfile.write(content)
         elif "/sources" in self.path:
             self._set_headers()
             print self.path

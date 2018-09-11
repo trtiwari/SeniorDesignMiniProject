@@ -21,6 +21,13 @@ def get_sources(userid):
     result = cur.fetchall()
     return result
 
+def get_label(userid, source):
+    command = '''SELECT DISTINCT label from temprh WHERE userid=? '''
+    cur = sqlite3.connect("data.db").cursor()
+    cur.execute(command, (userid,))
+    result = cur.fetchone()
+    return result[0]
+
 def save_graph(time, temp, humidity, userid, source):
     # plot temp
     plt.figure(figsize=(10,8))
@@ -87,5 +94,5 @@ if __name__ == "__main__":
     add_source('jhua', 4, 'ma twoth source')
     add_source('aa', 1, 'ma first source')
     add_source('aa', 7, 'ma first source')
-    get_sources('jhua')
+    get_label('jhua', 1)
     

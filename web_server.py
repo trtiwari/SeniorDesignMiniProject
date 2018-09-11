@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import subprocess
 from server_code.login import login
 from server_code.list_sources import list_sources
 from server_code.add_sources import add_sources
@@ -8,7 +9,8 @@ from server_code.display_results import display_results
 from server_code.add_sources import add_sources
 
 PORT = 80
-DOC_ROOT = "/root/Documents/Senior/SeniorThesis/SeniorDesignMiniProject"
+pwd = subprocess.Popen("pwd",stdout=subprocess.PIPE)
+DOC_ROOT = str(pwd.stdout.read()[:-1])
 
 class Handler(BaseHTTPRequestHandler):
     def _set_headers(self,extension="html"):
@@ -51,8 +53,8 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(content)
         elif "/add_sources?source_name" in self.path:
             print self.path
-            # user_id = self.path.split("/")[1]
-            # source_label = self.path.split("/")[2]
+            user_id = self.path.split("/")[1]
+            source_label = self.path.split("?")[2]
         elif "/add_sources" in self.path:
             content = add_sources.load_add_sources_page(DOC_ROOT)
             self.wfile.write(content)

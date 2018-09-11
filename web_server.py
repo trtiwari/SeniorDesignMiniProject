@@ -2,7 +2,8 @@
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from server_code.login.login import login
-from server_code.sources.sources import sources
+from server_code.list_sources.list_sources import list_sources
+from server_code.add_sources.add_sources import add_sources
 from server_code.display_results.display_results import display_results
 
 PORT = 80
@@ -47,7 +48,7 @@ class Handler(BaseHTTPRequestHandler):
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
-        elif "/sources/add_sources" in self.path:
+        elif "/add_sources" in self.path:
             pass
         elif "/login" in self.path:
             self._set_headers()
@@ -55,19 +56,16 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif "/list_sources" in self.path:
             self._set_headers()
-            sources()
+            user_id = self.path.split("/")[0]
+            print user_id
+            content = list_sources(user_id)
         elif "/display_results" in self.path:
             self._set_headers()
             user_id = self.path.split("/")[0]
             source = self.path.split("/")[1]
             content = display_results(user_id, source)
             self.wfile.write(content)
-        elif "/sources" in self.path:
-            self._set_headers()
-            print self.path
-            user_id = self.path.split("/")[0]
-            print user_id
-            content = sources(user_id)
+            
 
     def do_HEAD(self):
         self._set_headers()

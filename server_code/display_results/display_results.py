@@ -1,6 +1,6 @@
 import os
 import time
-from ..database import database as db 
+from database import database as db 
 
 def display_results(userid, source):
 	# query last 24 hours and save graphs

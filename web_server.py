@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from server_code.login.login import login
-from server_code.list_sources.list_sources import list_sources
-from server_code.add_sources.add_sources import add_sources
-from server_code.display_results.display_results import display_results
+from server_code.login import login
+from server_code.list_sources import list_sources
+from server_code.add_sources import add_sources
+from server_code.display_results import display_results
+from server_code.add_sources import add_sources
 
 PORT = 80
 DOC_ROOT = "/root/Documents/Senior/SeniorThesis/SeniorDesignMiniProject"
@@ -48,22 +49,25 @@ class Handler(BaseHTTPRequestHandler):
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
-        elif "/add_sources" in self.path:
-            pass
+        elif self.path.endswith("/add_sources"):
+            
+        elif "/add_sources/" in self.path:
+            user_id = self.path.split("/")[1]
+            source_label = self.path.split("/")[2]
         elif "/login" in self.path:
             self._set_headers()
-            content = login(DOC_ROOT)
+            content = login.login(DOC_ROOT)
             self.wfile.write(content)
         elif "/list_sources" in self.path:
             self._set_headers()
             user_id = self.path.split("/")[0]
             print user_id
-            content = list_sources(user_id)
+            content = list_sources.list_sources(user_id)
         elif "/display_results" in self.path:
             self._set_headers()
-            user_id = self.path.split("/")[0]
-            source = self.path.split("/")[1]
-            content = display_results(user_id, source)
+            user_id = self.path.split("/")[1]
+            source = self.path.split("/")[2]
+            content = display_results.display_results(user_id, source)
             self.wfile.write(content)
             
 

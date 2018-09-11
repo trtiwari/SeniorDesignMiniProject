@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+<title>Your Sources</title>
+<style>
+div.box {
+	background-color: rgb(128,128,128);
+	color: white;
+	margin: 20px 0 20px 0;
+	padding: 20px;
+	text-align: center;
+}
+div.box:hover{
+	background-color:rgb(175,175,175);
+}
+span.tab{
+	padding: 0 400px;
+}
+</style>
+</head>
 
-  	<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{{list}}
 
-    <title>{{source_label}}</title>
-
-	</head>
-	
-	<body>
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
-		<img src="{{temperature.png}}">
-		<img src="{{humidity.png}}">
-	</body>
-		</script>
-	</body>
+</body>
 </html>

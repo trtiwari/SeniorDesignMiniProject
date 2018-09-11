@@ -13,8 +13,8 @@ def display_results(userid, source):
 		template = descriptor.read()
 
 		# Get user + source specific files
-		temp_path = userid+'_'+source+'_temp.png'
-		hum_path = userid+'_'+source+'_hum.png'
+		temp_path = '../../tmp_files/'+userid+'_'+source+'_temp.png'
+		hum_path = '../../tmp_files/'+userid+'_'+source+'_hum.png'
 		# Get label
 		label = db.get_label(userid, source)
 

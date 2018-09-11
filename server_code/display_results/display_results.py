@@ -1,13 +1,13 @@
 import os
 import time
-import database as db 
+from ..database import database as db 
 
 def display_results(userid, source):
 	# query last 24 hours and save graphs
 	queryResults = db.query(userid, source, 1, 24)
 	temp = [i[0] for i in queryResults]
-    hum = [i[1] for i in queryResults]
-    save_graph(range(1,25), temp, hum, userid, source)
+	hum = [i[1] for i in queryResults]
+	save_graph(range(1,25), temp, hum, userid, source)
 
 	with open("display_results.template.html",'r') as descriptor:
 		template = descriptor.read()

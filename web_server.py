@@ -49,11 +49,13 @@ class Handler(BaseHTTPRequestHandler):
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
-        elif self.path.endswith("/add_sources"):
-            
-        elif "/add_sources/" in self.path:
-            user_id = self.path.split("/")[1]
-            source_label = self.path.split("/")[2]
+        elif "/add_sources?source_name" in self.path:
+            print self.path
+            # user_id = self.path.split("/")[1]
+            # source_label = self.path.split("/")[2]
+        elif "/add_sources" in self.path:
+            content = add_sources.load_add_sources_page(DOC_ROOT)
+            self.wfile.write(content)
         elif "/login" in self.path:
             self._set_headers()
             content = login.login(DOC_ROOT)
@@ -69,6 +71,8 @@ class Handler(BaseHTTPRequestHandler):
             source = self.path.split("/")[2]
             content = display_results.display_results(user_id, source)
             self.wfile.write(content)
+        else:
+            print self.path
             
 
     def do_HEAD(self):

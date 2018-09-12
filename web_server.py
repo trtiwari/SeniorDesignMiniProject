@@ -66,13 +66,13 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif "/list_sources" in self.path:
             self._set_headers()
-            user_id = self.path.split("/")[0]
+            user_id = self.path.split("/")[1]
             content = list_sources.list_sources(DOC_ROOT, user_id)
             self.wfile.write(content)
         elif "/display_results" in self.path:
             self._set_headers()
             user_id = self.path.split("/")[1]
-            source = self.path.split("/")[2]
+            source = self.path.split("/")[3]
             content = display_results.display_results(DOC_ROOT, user_id, source)
             self.wfile.write(content)
         else:

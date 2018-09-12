@@ -1,8 +1,8 @@
 from database import database as db 
 
-def list_sources(DOC_ROOT, user_id):
+def list_sources(DOC_ROOT, userid):
 	
-	sources_labels = db.get_sources(DOC_ROOT, user_id)
+	sources_labels = db.get_sources(DOC_ROOT, userid)
 	sources = [i[0] for i in sources_labels]
 	labels = [i[1] for i in sources_labels]
 
@@ -19,7 +19,7 @@ def list_sources(DOC_ROOT, user_id):
 
 		if len(sources) != 0:
 			for i in range(len(sources)):
-				url = userid+"/display_results/"+sources[i]
+				url = "display_results/"+str(sources[i])
 				source_label = labels[i]
 				mod_box = box.replace("{{url}}", url)
 				mod_box = mod_box.replace("{{source_label}}", source_label)
@@ -32,6 +32,8 @@ def list_sources(DOC_ROOT, user_id):
 						'''
 
 		template = template.replace('{{list}}', all_boxes)
+
+		template = template.replace('{{add_sources_url}}', userid + "/add_sources/")
 
 		return template
 

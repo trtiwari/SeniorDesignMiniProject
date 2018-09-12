@@ -7,14 +7,14 @@ def display_results(DOC_ROOT, userid, source):
 	queryResults = db.query(DOC_ROOT, userid, source, 1, 24)
 	temp = [i[0] for i in queryResults]
 	hum = [i[1] for i in queryResults]
-	save_graph(DOC_ROOT, range(1,25), temp, hum, userid, source)
+	db.save_graph(DOC_ROOT, range(1,25), temp, hum, userid, source)
 
 	with open(DOC_ROOT+"/frontend/html/display_results.template.html",'r') as descriptor:
 		template = descriptor.read()
 
 		# Get user + source specific files
-		temp_path = '../../tmp_files/'+userid+'_'+source+'_temp.png'
-		hum_path = '../../tmp_files/'+userid+'_'+source+'_hum.png'
+		temp_path = DOC_ROOT + '/tmp_files/'+userid+'_'+source+'_temp.png'
+		hum_path = DOC_ROOT + '/tmp_files/'+userid+'_'+source+'_hum.png'
 		# Get label
 		label = db.get_label(DOC_ROOT, userid, source)
 
@@ -24,14 +24,15 @@ def display_results(DOC_ROOT, userid, source):
 			return
 
 		### Find and Replace HTML variables
-		find_temp = template.find("{{temp}}")
-		find_hum = template.find("{{humidity}}")
+		find_temp = template.find("{{temperature.png}}")
+		find_hum = template.find("{{humidity.png}}")
 		find_label = template.find("{{source_label}}")
 
 		if find_temp!=-1 and find_hum!=-1 and find_label!=-1:
-			template = template.replace("{{temp}}", file_temp)
-			template = template.replace("{{humidity}}", file_hum)
+			template = template.replace("{{temperature.png}}", temp_path)
+			template = template.replace("{{humidity.png}}", hum_path)
 			template = template.replace("{{source_label}}", label)
 		else: 
 			print("ERROR: HTML variable missing!")
-	return template
+
+		return template

@@ -41,7 +41,7 @@ def save_graph(DOC_ROOT, time, temp, humidity, userid, source):
     plt.title('Temperature', fontsize=18)
     plt.xlabel('Hour', fontsize=16)
     plt.ylabel('Fahrenheit', fontsize=16)
-    plt.savefig('DOC_ROOT/tmp_files/'+userid+'_'+str(source)+'temp.png')
+    plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_temp.png')
 
     # plot humidity
     plt.figure(figsize=(10,8))
@@ -49,7 +49,7 @@ def save_graph(DOC_ROOT, time, temp, humidity, userid, source):
     plt.title('Humidity', fontsize=18)
     plt.xlabel('Hour', fontsize=16)
     plt.ylabel('Relative Humidity', fontsize=16)
-    plt.savefig('DOC_ROOT/tmp_files/'+userid+'_'+str(source)+'_hum.png')
+    plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_hum.png')
 
 def add_source(DOC_ROOT, userid, label):
     connection = sqlite3.connect(DOC_ROOT + "/database/data.db") 

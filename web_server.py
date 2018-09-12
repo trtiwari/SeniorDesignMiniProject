@@ -52,6 +52,7 @@ class Handler(BaseHTTPRequestHandler):
                 content = descriptor.read()
                 self.wfile.write(content)
         elif "/add_sources?source_name" in self.path:
+            print(self.path)
             user_id = self.path.split("/")[1]
             source_label = self.path.split("=")[1]
             content = add_sources.add_sources(DOC_ROOT,user_id,source_label)
@@ -66,13 +67,13 @@ class Handler(BaseHTTPRequestHandler):
         elif "/list_sources" in self.path:
             self._set_headers()
             user_id = self.path.split("/")[0]
-            print user_id
-            content = list_sources.list_sources(user_id)
+            content = list_sources.list_sources(DOC_ROOT, user_id)
+            self.wfile.write(content)
         elif "/display_results" in self.path:
             self._set_headers()
             user_id = self.path.split("/")[1]
             source = self.path.split("/")[2]
-            content = display_results.display_results(user_id, source)
+            content = display_results.display_results(DOC_ROOT, user_id, source)
             self.wfile.write(content)
         else:
             self._set_headers(response=404)

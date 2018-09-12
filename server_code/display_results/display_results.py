@@ -2,21 +2,21 @@ import os
 import time
 from database import database as db 
 
-def display_results(userid, source):
+def display_results(DOC_ROOT, userid, source):
 	# query last 24 hours and save graphs
-	queryResults = db.query(userid, source, 1, 24)
+	queryResults = db.query(DOC_ROOT, userid, source, 1, 24)
 	temp = [i[0] for i in queryResults]
 	hum = [i[1] for i in queryResults]
-	save_graph(range(1,25), temp, hum, userid, source)
+	save_graph(DOC_ROOT, range(1,25), temp, hum, userid, source)
 
-	with open("display_results.template.html",'r') as descriptor:
+	with open(DOC_ROOT+"/frontend/html/display_results.template.html",'r') as descriptor:
 		template = descriptor.read()
 
 		# Get user + source specific files
 		temp_path = '../../tmp_files/'+userid+'_'+source+'_temp.png'
 		hum_path = '../../tmp_files/'+userid+'_'+source+'_hum.png'
 		# Get label
-		label = db.get_label(userid, source)
+		label = db.get_label(DOC_ROOT, userid, source)
 
 		# Check if image paths exist
 		if not os.path.exists(temp_path) or not os.path.exists(hum_path):

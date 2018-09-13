@@ -1,4 +1,5 @@
 import sqlite3
+import random
 import matplotlib.pyplot as plt
 
 def query(DOC_ROOT, userid, source, time_start, time_end):
@@ -36,21 +37,25 @@ def get_label(DOC_ROOT, userid, source):
 
 def save_graph(DOC_ROOT, time, temp, humidity, userid, source):
     # plot temp
-    plt.figure(figsize=(10,8))
+    plt.figure(figsize=(12,8))
     plt.plot(time, temp, color='red')
     plt.title('Temperature', fontsize=24)
     plt.xlabel('Hour', fontsize=18)
     plt.ylabel('Fahrenheit', fontsize=18)
+    plt.xticks(range(24))
     plt.tick_params(labelsize=15)
+    plt.ylim(0,100)
     plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_temp.png')
 
     # plot humidity
-    plt.figure(figsize=(10,8))
+    plt.figure(figsize=(12,8))
     plt.plot(time, humidity, color='blue')
     plt.title('Humidity', fontsize=24)
     plt.xlabel('Hour', fontsize=18)
-    plt.ylabel('Relative Humidity', fontsize=18)
+    plt.ylabel('Percent Relative Humidity', fontsize=18)
+    plt.xticks(range(24))
     plt.tick_params(labelsize=15)
+    plt.ylim(0,100)
     plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_hum.png')
 
 def add_source(DOC_ROOT, userid, label):
@@ -65,8 +70,14 @@ def add_source(DOC_ROOT, userid, label):
 
     # Insert source for userid into table by loggin temp and humidity for 24 hours
     command = ''' INSERT into temprh(userid,source,label,time,temp,humidity) VALUES(?,?,?,?,?,?); '''
-    for i in range(1,25):
-       cur.execute(command, (userid, new_source, label, i, i+1, i+2))
+
+    random.seed(new_source)
+    temp_mid = random.randint(5,96)
+    hum_mid = random.randint(5,96)
+    for i in range(24):
+        temp_i = random.randint(temp_mid-5, temp_mid+5)
+        hum_i = random.randint(hum_mid-5, hum_mid+5)
+        cur.execute(command, (userid, new_source, label, i, temp_i, hum_i))
 
     connection.commit()
 

@@ -4,10 +4,10 @@ from database import database as db
 
 def display_results(DOC_ROOT, userid, source):
 	# query last 24 hours and save graphs
-	queryResults = db.query(DOC_ROOT, userid, source, 1, 24)
+	queryResults = db.query(DOC_ROOT, userid, source, 0, 23)
 	temp = [i[0] for i in queryResults]
 	hum = [i[1] for i in queryResults]
-	db.save_graph(DOC_ROOT, range(1,25), temp, hum, userid, source)
+	db.save_graph(DOC_ROOT, range(24), temp, hum, userid, source)
 
 	with open(DOC_ROOT+"/frontend/html/display_results.template.html",'r') as descriptor:
 		template = descriptor.read()

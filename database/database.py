@@ -26,9 +26,9 @@ def get_sources(DOC_ROOT, userid):
     return result
 
 def get_label(DOC_ROOT, userid, source):
-    command = '''SELECT DISTINCT label from temprh WHERE userid=? '''
+    command = '''SELECT DISTINCT label from temprh WHERE userid=? and source=? '''
     cur = sqlite3.connect(DOC_ROOT + "/database/data.db").cursor()
-    cur.execute(command, (userid,))
+    cur.execute(command, (userid,source))
     result = cur.fetchone()
 
     cur.close()
@@ -38,17 +38,19 @@ def save_graph(DOC_ROOT, time, temp, humidity, userid, source):
     # plot temp
     plt.figure(figsize=(10,8))
     plt.plot(time, temp, color='red')
-    plt.title('Temperature', fontsize=18)
-    plt.xlabel('Hour', fontsize=16)
-    plt.ylabel('Fahrenheit', fontsize=16)
+    plt.title('Temperature', fontsize=24)
+    plt.xlabel('Hour', fontsize=18)
+    plt.ylabel('Fahrenheit', fontsize=18)
+    plt.tick_params(labelsize=15)
     plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_temp.png')
 
     # plot humidity
     plt.figure(figsize=(10,8))
     plt.plot(time, humidity, color='blue')
-    plt.title('Humidity', fontsize=18)
-    plt.xlabel('Hour', fontsize=16)
-    plt.ylabel('Relative Humidity', fontsize=16)
+    plt.title('Humidity', fontsize=24)
+    plt.xlabel('Hour', fontsize=18)
+    plt.ylabel('Relative Humidity', fontsize=18)
+    plt.tick_params(labelsize=15)
     plt.savefig(DOC_ROOT + '/tmp_files/'+userid+'_'+str(source)+'_hum.png')
 
 def add_source(DOC_ROOT, userid, label):

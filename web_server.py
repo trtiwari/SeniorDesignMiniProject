@@ -75,6 +75,13 @@ class Handler(BaseHTTPRequestHandler):
             source = self.path.split("/")[3]
             content = display_results.display_results(DOC_ROOT, user_id, source)
             self.wfile.write(content)
+        elif "/tmp_files" in self.path:
+            extension = self.path.split(".")[-1]
+            self._set_headers(extension=extension)
+            print(self.path)
+            with open(DOC_ROOT + self.path) as descriptor:
+                content = descriptor.read()
+                self.wfile.write(content)
         else:
             self._set_headers(response=404)
             with open(DOC_ROOT + "/frontend/html/404.template.html") as descriptor:

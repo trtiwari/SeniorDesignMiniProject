@@ -8,5 +8,7 @@ def add_sources(DOC_ROOT,user_id,source_label):
 	source_label = source_label.replace("+"," ")
 	db.add_source(DOC_ROOT, user_id,source_label)
 	with open(DOC_ROOT+"/frontend/html/source_added.template.html",'r') as descriptor:
-		return descriptor.read()	
-	
+		template = descriptor.read()
+		url = "/" + user_id + "/list_sources"	
+		template = template.replace('{{url}}', url)
+		return template

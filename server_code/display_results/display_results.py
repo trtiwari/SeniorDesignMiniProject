@@ -13,15 +13,10 @@ def display_results(DOC_ROOT, userid, source):
 		template = descriptor.read()
 
 		# Get user + source specific files
-		temp_path = DOC_ROOT + '/tmp_files/'+userid+'_'+source+'_temp.png'
-		hum_path = DOC_ROOT + '/tmp_files/'+userid+'_'+source+'_hum.png'
+		temp_path = '/tmp_files/'+userid+'_'+source+'_temp.png'
+		hum_path = '/tmp_files/'+userid+'_'+source+'_hum.png'
 		# Get label
 		label = db.get_label(DOC_ROOT, userid, source)
-
-		# Check if image paths exist
-		if not os.path.exists(temp_path) or not os.path.exists(hum_path):
-			print('ERROR: Cannot find png file(s)!')
-			return
 
 		### Find and Replace HTML variables
 		find_temp = template.find("{{temperature.png}}")

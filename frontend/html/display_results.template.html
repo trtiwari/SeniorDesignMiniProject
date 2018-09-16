@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
   	<head>
-
+  		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com">
+  		<script src="https://apis.google.com/js/platform.js" async defer></script>
 	</head>
 
-	<body>
+	<body onload="onLoad()">
+		<a href="#" onclick="signOut();">Sign out</a>
 		<h1><center>{{source_label}}</center></h1>
 
 		<center><img src="{{temperature.png}}" alt="Temperature.png" style="width:750px;height:500px;"></center>
 		<center><img src="{{humidity.png}}" alt="Humidity.png" style="width:750px;height:500px;"></center>
+		<script src="/frontend/javascript/logout.js"></script>
 	</body>
 
 </html>

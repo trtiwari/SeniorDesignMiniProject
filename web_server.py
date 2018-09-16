@@ -52,7 +52,6 @@ class Handler(BaseHTTPRequestHandler):
                 content = descriptor.read()
                 self.wfile.write(content)
         elif "/add_sources?source_name" in self.path:
-            print(self.path)
             user_id = self.path.split("/")[1]
             source_label = self.path.split("=")[1]
             content = add_sources.add_sources(DOC_ROOT,user_id,source_label)

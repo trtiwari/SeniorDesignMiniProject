@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import subprocess
+import subprocess,os,re
 from server_code.login import login
 from server_code.list_sources import list_sources
 from server_code.add_sources import add_sources
@@ -81,6 +81,11 @@ class Handler(BaseHTTPRequestHandler):
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
+        elif "/logout" in self.path:
+            user_id = self.path.split("/")[1]
+            for f in os.listdir(DOC_ROOT + "/tmp_files/"):
+                if re.search("{0}*".format(user_id), f):
+                    os.remove(os.path.join(dir, f))
         else:
             self._set_headers(response=404)
             with open(DOC_ROOT + "/frontend/html/404.template.html") as descriptor:

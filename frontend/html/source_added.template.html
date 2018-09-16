@@ -2,11 +2,13 @@
 	<html>
 		<head>
 			<script src="https://apis.google.com/js/platform.js" async defer></script>
+			<meta name="google-signin-client_id" content="952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com">
 		</head>
-		<body>
+		<body onload="onLoad()">
+			<a href="logout" onclick="signOut();">Sign out</a>
 			<center><h1>Your source has been added!</h1></center>
 			<br>
 			<center><button class="button add_Source" onclick = "location.href='{{url}}'">Go back to sources</button></center>
-
+			<script src="/frontend/javascript/logout.js"></script>
 		</body>
 	</html>

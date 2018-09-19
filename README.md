@@ -34,20 +34,39 @@ All SQLite queries are parameterized queries, which sanitizes all input.
 
 ## WebApp Design
 
-We implement a custom web server in python (web_server.py) that binds to port 80 and
+We implemented a custom web server in python (web_server.py) that binds to port 80 and
 handles all incoming URLs from any client.
 
-### frontend
-#### css
-#### html
-#### images
-#### javascript
+The diagram for the architecture is below.
+![diagram](architecture.png)
 
+The architecture will now be explained in further detail.
+### frontend
+Code for the frontend of the webapp. 
+#### css
+CSS files used in the html files. 
+#### html
+HTML files for the following pages:
+* Login
+* Add sources
+* Sources added confirmation
+* List sources
+* Display results
+* 404 
+#### images
+Contains the background image for the login page.
+#### javascript
+Contains javascript for logging in and logging out.
 ### server_code
+Python code for the server side of the webapp. 
 #### add_sources
+Adds a source with a user-defined label for a user.
 #### display_results
+Displays the temperature and humidity plots if database query is successful. If query is unsuccessful, user will be sent to the 404 page. 
 #### list_sources
+Queries for and lists all sources that the user owns.
 #### login
+Logs in the user using Google authentication.
 
 ### database
 Database python file.
@@ -65,9 +84,9 @@ We have tested several edge cases, which include:
 
 ### sanitizing inputs for database: SQL injection is a real threat to any SQL database. We mitigate any such malicious injection queries by using parametrized queries that sanitize the input.
 
-### authentication: 
+### authentication: multiple users can access the webapp and access only the sources belonging to the user, i.e. listing sources only lists the logged in user's sources.
 
-### deleting cached files:
+### deleting cached files: the tmp_files folder contains all temperature and humidity plots that are saved during the time the user is logged in. Once the user logs out, all files in tmp_files will be cleared for security purposes.
 
 ## Running the Application
 

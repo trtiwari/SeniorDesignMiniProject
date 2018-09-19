@@ -14,6 +14,7 @@ def query(DOC_ROOT, userid, source, time_start, time_end):
         time_end (int): End time for pulling out temp and hum values
 
     Returns:
+        output (list of tuples): Temperature and humidity data structured as tuples (temp, hum) in a list
     '''
     output = []
     command = '''SELECT temp, humidity from temprh WHERE userid=? and source=? and time=?'''

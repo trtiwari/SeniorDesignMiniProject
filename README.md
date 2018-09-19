@@ -43,9 +43,9 @@ The diagram for the architecture is below.
 The architecture will now be explained in further detail.
 ### frontend
 Code for the frontend of the webapp. 
-#### css
+#### * css
 CSS files used in the html files. 
-#### html
+#### * html
 HTML files for the following pages:
 * Login
 * Add sources
@@ -53,19 +53,19 @@ HTML files for the following pages:
 * List sources
 * Display results
 * 404 
-#### images
+#### * images
 Contains the background image for the login page.
-#### javascript
+#### * javascript
 Contains javascript for logging in and logging out.
 ### server_code
 Python code for the server side of the webapp. 
-#### add_sources
+#### * add_sources
 Adds a source with a user-defined label for a user.
-#### display_results
+#### * display_results
 Displays the temperature and humidity plots if database query is successful. If query is unsuccessful, user will be sent to the 404 page. 
-#### list_sources
+#### * list_sources
 Queries for and lists all sources that the user owns.
-#### login
+#### * login
 Logs in the user using Google authentication.
 
 ### database

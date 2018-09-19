@@ -78,15 +78,20 @@ Stores generated plots. All files are deleted upon user logout.
 
 We have tested several edge cases, which include:
 
-### testing for random URLs: we have a 404 page implemented if the user accidently goes to a page that doesn't exist
+### testing for random URLs: 
+We have a 404 page implemented if the user accidently goes to a page that doesn't exist
 
-### checking if the user request to display a source is valid: we check for empty results on database queries (i.e., if the user requests to display a source that isn't in the database) and return a 404 page on invalid requests.
+### checking if the user request to display a source is valid: 
+We check for empty results on database queries (i.e., if the user requests to display a source that isn't in the database) and return a 404 page on invalid requests.
 
-### sanitizing inputs for database: SQL injection is a real threat to any SQL database. We mitigate any such malicious injection queries by using parametrized queries that sanitize the input.
+### sanitizing inputs for database: 
+SQL injection is a real threat to any SQL database. We mitigate any such malicious injection queries by using parametrized queries that sanitize the input.
 
-### authentication: multiple users can access the webapp and access only the sources belonging to the user, i.e. listing sources only lists the logged in user's sources.
+### authentication: 
+Multiple users can access the webapp and access only the sources belonging to the user, i.e. listing sources only lists the logged in user's sources.
 
-### deleting cached files: the tmp_files folder contains all temperature and humidity plots that are saved during the time the user is logged in. Once the user logs out, all files in tmp_files will be cleared for security purposes.
+### deleting cached files: 
+The tmp_files folder contains all temperature and humidity plots that are saved during the time the user is logged in. Once the user logs out, all files in tmp_files will be cleared for security purposes.
 
 ## Running the Application
 

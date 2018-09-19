@@ -17,6 +17,13 @@ def display_results(DOC_ROOT, userid, source):
 	queryResults = db.query(DOC_ROOT, userid, source, 0, 23)
 	temp = [i[0] for i in queryResults]
 	hum = [i[1] for i in queryResults]
+
+	# If no data was retrieved, go to 404 page
+	if len(temp) == 0 or len(hum) == 0:
+		with open(DOC_ROOT+"/frontend/html/404.template.html",'r') as descriptor:
+			return descriptor.read()
+
+
 	db.save_graph(DOC_ROOT, range(24), temp, hum, userid, source)
 
 	# Modify html file

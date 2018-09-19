@@ -34,6 +34,9 @@ All SQLite queries are parameterized queries, which sanitizes all input.
 
 ## WebApp Design
 
+We implement a custom web server in python (web_server.py) that binds to port 80 and
+handles all incoming URLs from any client.
+
 ### frontend
 #### css
 #### html
@@ -53,6 +56,18 @@ Database python file.
 Stores generated plots. All files are deleted upon user logout. 
 
 ## Testing and Verification
+
+We have tested several edge cases, which include:
+
+### testing for random URLs: we have a 404 page implemented if the user accidently goes to a page that doesn't exist
+
+### checking if the user request to display a source is valid: we check for empty results on database queries (i.e., if the user requests to display a source that isn't in the database) and return a 404 page on invalid requests.
+
+### sanitizing inputs for database: SQL injection is a real threat to any SQL database. We mitigate any such malicious injection queries by using parametrized queries that sanitize the input.
+
+### authentication: 
+
+### deleting cached files:
 
 ## Running the Application
 

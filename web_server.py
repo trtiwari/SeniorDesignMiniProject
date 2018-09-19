@@ -32,14 +32,19 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        # set the default path to login
         if self.path == "/":
             self.path = "/login"
+        # this path contains all the images in the web pages.
+        # we just read the image file requested and return it
+        # as a response to the client
         if "/frontend/images" in self.path:
             extension = self.path.split(".")[-1]
             self._set_headers(extension=extension)
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
+        # contains all javascript files
         elif "/frontend/javascript" in self.path:
             extension = self.path.split(".")[-1]
             self._set_headers(extension=extension)
@@ -52,6 +57,7 @@ class Handler(BaseHTTPRequestHandler):
             with open(DOC_ROOT + self.path) as descriptor:
                 content = descriptor.read()
                 self.wfile.write(content)
+        # this URL is invoked when the 
         elif "/add_sources?source_name" in self.path:
             user_id = self.path.split("/")[1]
             source_label = self.path.split("=")[1]
@@ -96,9 +102,18 @@ class Handler(BaseHTTPRequestHandler):
             
 
     def do_HEAD(self):
+        '''
+            responds to HTTP HEAD requests by sending just the response headers
+        '''
         self._set_headers()
         
     def do_POST(self):
+        '''
+            A stub POST function. We don't actually ever use POST requests, 
+            but if the user accidently submits a POST request, we have this 
+            function implemented just so the application doesn't error out.
+            It just returns the response headers.
+        '''
         self._set_headers()
 
 
@@ -111,7 +126,3 @@ def run(server_class=HTTPServer, handler_class=Handler, port=PORT):
 if __name__ == "__main__":
     db.create_table()
     run()
-
-# add_sources
-# sign_out
-# urls

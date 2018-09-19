@@ -7,6 +7,7 @@ from server_code.list_sources import list_sources
 from server_code.add_sources import add_sources
 from server_code.display_results import display_results
 from server_code.add_sources import add_sources
+from database import database as db
 
 PORT = 80
 pwd = subprocess.Popen("pwd",stdout=subprocess.PIPE)
@@ -86,6 +87,7 @@ class Handler(BaseHTTPRequestHandler):
             for f in os.listdir(DOC_ROOT + "/tmp_files/"):
                 if re.search("{0}*".format(user_id), f):
                     os.remove(os.path.join(dir, f))
+                    print("reached here")
         else:
             self._set_headers(response=404)
             with open(DOC_ROOT + "/frontend/html/404.template.html") as descriptor:
@@ -107,6 +109,7 @@ def run(server_class=HTTPServer, handler_class=Handler, port=PORT):
     httpd.serve_forever()
 
 if __name__ == "__main__":
+    db.create_table()
     run()
 
 # add_sources

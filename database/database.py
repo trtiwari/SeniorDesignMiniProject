@@ -84,9 +84,8 @@ def add_source(DOC_ROOT, userid, label):
     cur.close()
     connection.close()
 
-if __name__ == "__main__":
-
-    connection = sqlite3.connect("data.db")
+def create_table():
+    connection = sqlite3.connect("database/data.db")
 
     create_table = ''' CREATE TABLE IF NOT EXISTS temprh (
         userid text NOT NULL,

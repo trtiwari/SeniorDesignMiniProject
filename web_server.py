@@ -109,12 +109,13 @@ class Handler(BaseHTTPRequestHandler):
                 content = descriptor.read()
                 self.wfile.write(content)
         # invoked when user clicks on the sign out link
+        # this deletes all of the temp/humidity files generated for a particular
+        # user during his session
         elif "/logout" in self.path:
             user_id = self.path.split("/")[1]
             for f in os.listdir(DOC_ROOT + "/tmp_files/"):
                 if re.search("{0}*".format(user_id), f):
-                    os.remove(os.path.join(dir, f))
-                    print("reached here")
+                    os.remove(os.path.join(DOC_ROOT + "/tmp_files/", f))
         # a catch-all block for random URLs that don't point to anything
         # displays a 404 message
         else:

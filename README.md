@@ -20,6 +20,7 @@ The table consists of the following query keys:
 * humdity = Humidity for specified time
 
 | userid | source | label | time | temp | humidity |
+|:------:|:------:|:-----:|:----:|:----:|:--------:|
 | 0001 | 1 | Source1 | 1 | 40 | 50 |
 | 0001 | 1 | Source1 | 2 | 43 | 49 |
 | 0001 | 1 | Source1 | ... | - | - |

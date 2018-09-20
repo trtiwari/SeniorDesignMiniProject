@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<script src="https://apis.google.com/js/platform.js" async defer></script>
+			<meta name="google-signin-client_id" content="952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com">
+		</head>
+		<body onload="onLoad()">
+			<a href="logout" onclick="signOut();">Sign out</a>
+			<center><h1>Enter a new source name</h1></center>
+			<br>
+			<center><form action="add_sources" method="GET">
+			  Source Name:<br>
+			  <input type="text" name="source_name">
+			  <br><br>
+			  <input type="submit" value="Submit">
+			</form></center>
+		<script src="/frontend/javascript/logout.js"></script>
+		</body>
+	</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Sources</title>
+			<script src="https://apis.google.com/js/platform.js" async defer></script>
+			<meta name="google-signin-client_id" content="952397845152-8ahmn1g7gt7jhgbuapap6or07lre5b1f.apps.googleusercontent.com">
+			<style>
+				div.box {
+					background-color: rgb(128,128,128);
+					color: white;
+					margin: 20px 0 20px 0;
+					padding: 20px;
+					text-align: center;
+				}
+				div.box:hover{
+					background-color:rgb(175,175,175);
+				}
+				span.tab{
+					padding: 0 400px;
+				}
+			</style>
+		</head>
+
+		<body onload="onLoad()">
+		<a href="logout" onclick="signOut();">Sign out</a>
+		<h1><center>Your Sources</center></h1>
+
+		{{list}}
+
+		<br>
+		<br>
+		<center><button class="button add_Source" onclick = "location.href='{{add_sources_url}}'" style="height:50px;width:130px">Add Source</button></center>
+		<script src="/frontend/javascript/logout.js"></script>
+
+		</body>
+	</html>

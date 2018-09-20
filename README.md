@@ -1,6 +1,6 @@
 # Senior Design Software Mini Project
 
-Web application that plots temperature and humidity data for users. Each user may have multiple sources that each logs data into a database. User authentication completed using Google authentication. 
+Web application that plots temperature and humidity data for users. Each user may have multiple sources that each logs data into a database. User authentication completed using Google authentication. A demo is included, called final_demo.mp4. Please take a look to see an overview of the webapp capabilities.
 
 ## Authentication
 
@@ -102,6 +102,9 @@ The Google Authentication API requires app developers to register domain(s) for 
 http://seniordesign.hopto.org
 
 Please visit No-IP, create a new account (https://my.noip.com/#!/dynamic-dns) and create the DNS mapping for the give domain to point to the IP address of the machine you'll be testing the web server on.
+
+In the demo, Trishita used her own private domain for testing purposes.
+When accessing the domain, please use Firefox, which has been found to work better with our webapp.
 
 ### Dependencies
 

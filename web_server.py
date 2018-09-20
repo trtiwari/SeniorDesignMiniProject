@@ -116,6 +116,7 @@ class Handler(BaseHTTPRequestHandler):
             for f in os.listdir(DOC_ROOT + "/tmp_files/"):
                 if re.search("{0}*".format(user_id), f):
                     os.remove(os.path.join(DOC_ROOT + "/tmp_files/", f))
+                    print("deleted cached files ...")
         # a catch-all block for random URLs that don't point to anything
         # displays a 404 message
         else:

@@ -1,6 +1,6 @@
 # Senior Design Software Mini Project
 
-Web application that plots temperature and humidity data for users. Each user may have multiple sources that log data into a database. User authentication completed using Google authentication. 
+Web application that plots temperature and humidity data for users. Each user may have multiple sources that each logs data into a database. User authentication completed using Google authentication. 
 
 ## Authentication
 

@@ -123,7 +123,7 @@ python -m web_server
 
 ### Trishita Tiwari
 * Created the webserver that handles URLs (web_server.py)
-* Server code & frontend - home page and, add new sources page, 404 page
+* Server code & frontend - home page, add new sources page, 404 page
 * Authentication - integrating the Google Authentication API for sign-in sign-out.
 
 ## Authors

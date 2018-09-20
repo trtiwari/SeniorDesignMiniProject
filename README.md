@@ -101,7 +101,7 @@ The Google Authentication API requires app developers to register domain(s) for 
 
 http://seniordesign.hopto.org
 
-Please visit No-IP, create a new account (https://my.noip.com/#!/dynamic-dns) and create the DNS mapping to point to the IP address of the machine you'll be testing the web server on.
+Please visit No-IP, create a new account (https://my.noip.com/#!/dynamic-dns) and create the DNS mapping for the give domain to point to the IP address of the machine you'll be testing the web server on.
 
 ### Dependencies
 

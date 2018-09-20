@@ -95,11 +95,19 @@ The tmp_files folder contains all temperature and humidity plots that are saved 
 
 ## Running the Application
 
-### Prerequisites
+### Domain
+
+The Google Authentication API requires app developers to register domain(s) for the web applications to user their product. The API doesn't work without a registered domain name. Hence, to test this product, we have reserved the following domain name:
+
+http://seniordesign.hopto.org
+
+Please visit No-IP, create a new account (https://my.noip.com/#!/dynamic-dns) and create the DNS mapping to point to the IP address of the machine you'll be testing the web server on.
+
+### Dependencies
 
 * Sqlite3
 
-### Run via CMD
+### Run via CMD (inside the root of the Git Repo)
 
 ```
 python -m web_server

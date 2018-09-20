@@ -115,6 +115,13 @@ When accessing the domain, please use Firefox, which has been found to work bett
 ```
 python -m web_server
 ```
+## Individual Contributions
+### June Hua
+* Database
+* Server code & frontend - display results and list sources
+* Generate plots
+
+### Trishita Tiwari
 
 ## Authors
 

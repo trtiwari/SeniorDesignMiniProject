@@ -19,6 +19,7 @@ The table consists of the following query keys:
 * temp = Temperature for specified time
 * humdity = Humidity for specified time
 
+An example of the database is below.
 | userid | source | label | time | temp | humidity |
 |:------:|:------:|:-----:|:----:|:----:|:--------:|
 | 0001 | 1 | Source1 | 1 | 40 | 50 |
@@ -29,8 +30,6 @@ The table consists of the following query keys:
 | 0002 | 1 | Source5 | 1 | 2 | 80 |
 
 This table format allows for logging the temperature and humidity over a 24 hour time period for the user's source. Each entry in the table represents the temperature and humidity for a single hour.
-
-All SQLite queries are parameterized queries, which sanitizes all input.  
 
 ## WebApp Design
 
